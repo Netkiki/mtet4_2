@@ -1,18 +1,22 @@
 #include <Arduino.h>
 
-// put function declarations here:
-int myFunction(int, int);
+// กำหนดขารีเลย์
+const int relayPins[5] = {2, 3, 4, 5, 6};
 
 void setup() {
-  // put your setup code here, to run once:
-  int result = myFunction(2, 3);
+  // ตั้งค่าขารีเลย์เป็น OUTPUT
+  for (int i = 0; i < 5; i++) {
+    pinMode(relayPins[i], OUTPUT);
+    digitalWrite(relayPins[i], LOW); // ปิดรีเลย์เริ่มต้น
+  }
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-}
-
-// put function definitions here:
-int myFunction(int x, int y) {
-  return x + y;
+  // ตัวอย่าง: เปิดรีเลย์ทีละตัว
+  for (int i = 0; i < 5; i++) {
+    digitalWrite(relayPins[i], HIGH); // เปิดรีเลย์
+    delay(500);
+    digitalWrite(relayPins[i], LOW);  // ปิดรีเลย์
+    delay(500);
+  }
 }
